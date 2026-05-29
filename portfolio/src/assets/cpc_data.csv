@@ -1,4 +1,4 @@
-product_id,cost_before,clicks_before,cost_after,clicks_after
+campaign_id,cost_before,clicks_before,cost_after,clicks_after
 id_0000,1894.37,72,7165.48,343
 id_0001,629.21,36,2774.75,172
 id_0002,41.89,3,177.84,14
