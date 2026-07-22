@@ -140,7 +140,7 @@
       .grid { grid-template-columns: 1fr; }
     }
 
-    /* ── Card ── */
+/* ── Card ── */
     .card {
       background: var(--card-bg);
       border: 1.5px solid var(--card-border);
@@ -164,6 +164,7 @@
       background: linear-gradient(135deg, rgba(200,64,26,.04) 0%, transparent 60%);
       opacity: 0;
       transition: opacity .22s ease;
+      pointer-events: none; /* Allows clicking links underneath */
     }
 
     .card:hover {
@@ -197,22 +198,49 @@
       flex: 1;
     }
 
-    .card-arrow {
+    /* ── Card Links Container ── */
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .8rem;
+      margin-top: .4rem;
+      padding-top: .8rem;
+      border-top: 1px dashed var(--card-border);
+      position: relative;
+      z-index: 2; /* Keeps links above card ::after overlay */
+    }
+
+    .links-label {
+      font-size: .75rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .card-link {
       font-size: .75rem;
       color: var(--accent);
-      letter-spacing: .06em;
-      margin-top: .4rem;
-      display: flex;
+      letter-spacing: .04em;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
       align-items: center;
-      gap: .4rem;
-      opacity: 0;
-      transform: translateX(-6px);
+      gap: .2rem;
       transition: opacity .2s ease, transform .2s ease;
     }
 
-    .card:hover .card-arrow {
+    .card-link:hover {
+      text-decoration: underline;
+      transform: translateY(-1px);
+    }
+
+    .github-link {
+      margin-left: auto;
+      opacity: .85;
+    }
+
+    .github-link:hover {
       opacity: 1;
-      transform: translateX(0);
     }
 
     /* ── Animations ── */
@@ -273,58 +301,76 @@
     </p>
   </section>
 
-  <!-- ── Projects ── -->
-  <section>
-    <div class="projects-header">
-      <h2>Projects</h2>
-      <span class="count">4 notebooks</span>
+<!-- ── Projects ── -->
+<section>
+  <div class="projects-header">
+    <h2>Projects</h2>
+    <span class="count">4 projects</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- Project 01 -->
+    <div class="card" style="--i:0">
+      <span class="card-number">01</span>
+      <h3>Car insurance claims</h3>
+      <p>
+        Extensive exploratory data analysis on car insurance data. Two models - Poisson GLM and XGBoost - are used 
+        to predict the number of claims. Models performances are studied and compared against each other.
+      </p>
+      <div class="card-links">
+        <span class="links-label">Notebooks:</span>
+        <a href="projects/carinsurance/eda.html" class="card-link">EDA →</a>
+        <a href="projects/carinsurance/modeling.html" class="card-link">Modeling →</a>
+        <a href="https://github.com/andratx-bellmunt/car-insurance-claims" target="_blank" rel="noopener noreferrer" class="card-link github-link">GitHub Repo ↗</a>
+      </div>
     </div>
 
-    <div class="grid">
-
-      <a href="projects/carinsurance.html" class="card" style="--i:0">
-        <span class="card-number">01</span>
-        <h3>Car insurance claims</h3>
-        <p>
-          Extensive exploratory data analysis on car insurance data. Two models -Poisson GLM and XGBoost- are used 
-          to predict the number of claims. Models performances are studied and compared against each other.
-        </p>
-        <span class="card-arrow">View notebook →</span>
-      </a>
-
-      <a href="projects/cpcsurge.html" class="card" style="--i:1">
-        <span class="card-number">02</span>
-        <h3>Cost-per-click surge attribution</h3>
-        <p>
-          Adapted from a real business scenario. A +18% cost-per-click surge is observed in aggregated data for 1,900+ digital advertising campaigns. 
-          Rate-mix decomposition is used to properly attribute the contribution of each individual campaign to the global figure.
-        </p>
-        <span class="card-arrow">View notebook →</span>
-      </a>
-
-      <a href="projects/nn_shape_changes.html" class="card" style="--i:2">
-        <span class="card-number">03</span>
-        <h3>Data shape under Neural Networks</h3>
-        <p>
-          Demonstration of how the shape of a data cloud simplifies 
-          as it progresses through the layers of a neural network. A small section on persistent homology is included. 
-          Inspired by the paper "Topology of deep neural networks".
-        </p>
-        <span class="card-arrow">View notebook →</span>
-      </a>
-
-      <a href="projects/nba.html" class="card" style="--i:3">
-        <span class="card-number">04</span>
-        <h3>NBA Player Position Classification & Inference</h3>
-        <p>
-          Proof of concept of machine learning project leveraging official NBA player statistics to optimize positional classification, 
-          map hybrid styles of play, and infer missing historical labels.
-        </p>
-        <span class="card-arrow">View notebook →</span>
-      </a>
-
+    <!-- Project 02 -->
+    <div class="card" style="--i:1">
+      <span class="card-number">02</span>
+      <h3>Cost-per-click surge attribution</h3>
+      <p>
+        Adapted from a real business scenario. A +18% cost-per-click surge is observed in aggregated data for 1,900+ digital advertising campaigns. 
+        Rate-mix decomposition is used to properly attribute the contribution of each individual campaign to the global figure.
+      </p>
+      <div class="card-links">
+        <a href="projects/cpcsurge.html" class="card-link">Notebook →</a>
+        <a href="https://github.com/andratx-bellmunt/cpc-surge" target="_blank" rel="noopener noreferrer" class="card-link github-link">GitHub Repo ↗</a>
+      </div>
     </div>
-  </section>
+
+    <!-- Project 03 -->
+    <div class="card" style="--i:2">
+      <span class="card-number">03</span>
+      <h3>Data shape under Neural Networks</h3>
+      <p>
+        Demonstration of how the shape of a data cloud simplifies 
+        as it progresses through the layers of a neural network. A small section on persistent homology is included. 
+        Inspired by the paper "Topology of deep neural networks".
+      </p>
+      <div class="card-links">
+        <a href="projects/nn_shape_changes.html" class="card-link">Notebook →</a>
+        <a href="https://github.com/andratx-bellmunt/shape-changes-under-nn" target="_blank" rel="noopener noreferrer" class="card-link github-link">GitHub Repo ↗</a>
+      </div>
+    </div>
+
+    <!-- Project 04 -->
+    <div class="card" style="--i:3">
+      <span class="card-number">04</span>
+      <h3>NBA Player Position Classification & Inference</h3>
+      <p>
+        Proof of concept of machine learning project leveraging official NBA player statistics to optimize positional classification, 
+        map hybrid styles of play, and infer missing historical labels.
+      </p>
+      <div class="card-links">
+        <a href="projects/nba.html" class="card-link">Notebook →</a>
+        <a href="https://github.com/andratx-bellmunt/nba-player-positions" target="_blank" rel="noopener noreferrer" class="card-link github-link">GitHub Repo ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <footer>
     <span>Andratx Bellmunt — Data Science Portfolio</span>
